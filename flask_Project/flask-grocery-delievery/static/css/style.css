@@ -1,0 +1,114 @@
+/* Custom styles for Grocery Delivery */
+
+/* General styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    flex: 1;
+  }
+  
+  /* Navbar styles */
+  .navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  /* Card styles */
+  .card {
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-img-top {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+  
+  /* Button styles */
+  .btn {
+    border-radius: 0.25rem;
+  }
+  
+  .btn-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2e59d9;
+  }
+  
+  .btn-success {
+    background-color: #1cc88a;
+    border-color: #1cc88a;
+  }
+  
+  .btn-success:hover {
+    background-color: #17a673;
+    border-color: #17a673;
+  }
+  
+  /* Footer styles */
+  footer {
+    margin-top: auto;
+  }
+  
+  /* Product card styles */
+  .product-card {
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* Category sidebar */
+  .list-group-item {
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* Carousel styles */
+  .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .carousel-item img {
+      height: 250px;
+    }
+  
+    .navbar .form-control {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  
+    .navbar .btn {
+      width: 100%;
+    }
+  }
+  

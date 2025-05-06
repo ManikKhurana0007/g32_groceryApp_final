@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Grocery Delivery{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Shop by Categories</h5>
+            </div>
+            <div class="list-group list-group-flush">
+                {% for category in categories %}
+                <a href="{{ url_for('category', category_id=category.id) }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                    {% if category.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + category.image) }}" alt="{{ category.name }}" class="me-2" style="width: 30px; height: 30px; object-fit: cover;">
+                    {% else %}
+                    <i class="fas fa-folder me-2"></i>
+                    {% endif %}
+                    {{ category.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{{ url_for('static', filename='img/banner3.png') }}" class="d-block w-100" alt="Fresh Fruits">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Fresh Fruits & Vegetables</h2>
+                        <p>Delivered straight from the farm to your doorstep</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/banner2.png') }}" class="d-block w-100" alt="Dairy Products">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Quality Dairy Products</h2>
+                        <p>Farm fresh dairy for your family</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="{{ url_for('static', filename='img/banner1.png') }}" class="d-block w-100" alt="Bakery Items">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h2>Freshly Baked Goods</h2>
+                        <p>Artisan breads and pastries baked daily</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        
+        <h2 class="mb-4">Featured Products</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    {% if product.image %}
+                    <img src="{{ url_for('static', filename='uploads/' + product.image) }}" class="card-img-top" alt="{{ product.name }}" style="height: 180px; object-fit: cover;">
+                    {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 180px;">
+                        <i class="fas fa-image fa-3x text-muted"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text text-success fw-bold">${{ "%.2f"|format(product.price) }}</p>
+                        <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-primary btn-sm">View Details</a>
+                        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="post" class="d-inline">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                <i class="fas fa-cart-plus"></i> Add
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
